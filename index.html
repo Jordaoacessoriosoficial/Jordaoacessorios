@@ -84,16 +84,20 @@
   <input id="nome" type="text" placeholder="Seu nome" required>
   <input id="telefone" type="tel" placeholder="Seu telefone" required>
 
-  <select id="produto">
-    <option value="">Selecione o produto</option>
-    <option>Capas de celular</option>
-    <option>Fones de ouvido</option>
-    <option>Carregadores</option>
-    <option>Películas</option>
-    <option>Outros acessórios</option>
-  </select>
+  <label>Produto</label>
+<select id="produto" onchange="calcularTotal()">
+  <option value="">Selecione o produto</option>
+  <option value="Capinha|20">Capinha – R$20</option>
+  <option value="Fone de ouvido|50">Fone de ouvido – R$50</option>
+  <option value="Carregador|35">Carregador – R$35</option>
+  <option value="Película|15">Película – R$15</option>
+</select>
 
-  <input id="quantidade" type="number" placeholder="Quantidade">
+<label>Quantidade</label>
+<input type="number" id="quantidade" min="1" placeholder="Ex: 2" oninput="calcularTotal()">
+
+<label>Total</label>
+<input type="text" id="total" placeholder="R$ 0,00" readonly>
 
   <select id="pagamento">
     <option value="">Forma de pagamento</option>
