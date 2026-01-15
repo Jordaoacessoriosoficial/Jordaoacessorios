@@ -123,9 +123,10 @@
 </select>
 
 <div id="pixInfo" style="display:none; margin-top:10px; padding:10px; background:#f1f1f1; border-radius:8px;">
-  <strong>💳 Pagamento via PIX</strong><br>
-  Chave PIX: <b id="pixChave">81988052139</b><br>
-  <small>Envie o comprovante no WhatsApp após o pagamento.</small>
+  <strong>💳 Pagamento via PIX</strong><br><br>
+  <span id="pixChave">81988052139</span><br><br>
+  <button type="button" onclick="copiarPix()">📋 Copiar PIX</button>
+  <p id="pixMsg" style="color:green; display:none;">PIX copiado!</p>
 </div>
 
   <textarea id="obs" rows="3" placeholder="Observações"></textarea>
@@ -176,7 +177,18 @@ function enviarPedido() {
     alert("Preencha todos os campos.");
     return;
   }
+function copiarPix() {
+  var chave = document.getElementById("pixChave").innerText;
+  navigator.clipboard.writeText(chave).then(function () {
+    document.getElementById("pixMsg").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("pixMsg").style.display = "none";
+    }, 2000);
+  });
+}
+</script>
 
+  
   var produto = produtoValor.split("|")[0];
   var chavePix = "81988052139";
 
