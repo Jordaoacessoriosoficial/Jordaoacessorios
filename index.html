@@ -69,7 +69,23 @@
   }
 </style>
 </head>
+<script>
+function calcularTotal() {
+  const produto = document.getElementById("produto").value;
+  const quantidade = document.getElementById("quantidade").value;
 
+  if (!produto || !quantidade) {
+    document.getElementById("total").value = "";
+    return;
+  }
+
+  const partes = produto.split("|");
+  const preco = parseFloat(partes[1]);
+
+  const total = preco * quantidade;
+  document.getElementById("total").value = "R$ " + total.toFixed(2);
+}
+</script>
 <body>
 
 <header style="text-align:center; padding:20px;">
