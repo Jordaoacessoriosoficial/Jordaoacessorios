@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordão Acessórios</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #5A2CD6, #5575FA);
+    color: white;
+    text-align: center;
+  }
+
+  header {
+    padding: 30px 15px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 32px;
+  }
+
+  header p {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .container {
+    background: white;
+    color: #333;
+    max-width: 420px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  input, select, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  button {
+    background: #FFDC46;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  footer {
+    margin: 20px 10px;
+    font-size: 14px;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Jordão Acessórios</h1>
+  <p>Capas • Fones • Carregadores • Acessórios</p>
+</header>
+
+<div class="container">
+  <h2>📝 Fazer Pedido</h2>
+
+  <input id="nome" type="text" placeholder="Seu nome" required>
+  <input id="telefone" type="tel" placeholder="Seu telefone" required>
+
+  <select id="produto">
+    <option value="">Selecione o produto</option>
+    <option>Capas de celular</option>
+    <option>Fones de ouvido</option>
+    <option>Carregadores</option>
+    <option>Películas</option>
+    <option>Outros acessórios</option>
+  </select>
+
+  <input id="quantidade" type="number" placeholder="Quantidade">
+
+  <select id="pagamento">
+    <option value="">Forma de pagamento</option>
+    <option>Pix</option>
+    <option>Dinheiro</option>
+    <option>Cartão</option>
+  </select>
+
+  <textarea id="obs" rows="3" placeholder="Observações"></textarea>
+
+  <button onclick="enviarPedido()">ENVIAR PEDIDO</button>
+</div>
+
+<footer>
+  📞 81 98805-2139 <br>
+  📍 Rua Silvestre Agostinho Sales, Jardim Jordão
+</footer>
+
+<script>
+function enviarPedido() {
+  let nome = document.getElementById("nome").value;
+  let telefone = document.getElementById("telefone").value;
+  let produto = document.getElementById("produto").value;
+  let quantidade = document.getElementById("quantidade").value;
+  let pagamento = document.getElementById("pagamento").value;
+  let obs = document.getElementById("obs").value;
+
+  let mensagem =
+`🧾 *Pedido - Jordão Acessórios*
+
+👤 Nome: ${nome}
+📞 Telefone: ${telefone}
+📦 Produto: ${produto}
+🔢 Quantidade: ${quantidade}
+💳 Pagamento: ${pagamento}
+📝 Observações: ${obs}`;
+
+  let url = "https://wa.me/5581988052139?text=" + encodeURIComponent(mensagem);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
