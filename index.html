@@ -160,8 +160,19 @@ function calcularTotal() {
     return;
   }
 
-  var preco = produto.split("|")[1];
-  document.getElementById("total").value = "R$ " + (preco * qtd).toFixed(2);
+  var preco = parseFloat(produto.split("|")[1]);
+  var total = preco * qtd;
+  document.getElementById("total").value = "R$ " + total.toFixed(2);
+}
+
+function copiarPix() {
+  var chave = document.getElementById("pixChave").innerText;
+  navigator.clipboard.writeText(chave).then(function () {
+    document.getElementById("pixMsg").style.display = "block";
+    setTimeout(function () {
+      document.getElementById("pixMsg").style.display = "none";
+    }, 2000);
+  });
 }
 
 function enviarPedido() {
@@ -177,9 +188,7 @@ function enviarPedido() {
     alert("Preencha todos os campos.");
     return;
   }
-</script>
 
-  
   var produto = produtoValor.split("|")[0];
   var chavePix = "81988052139";
 
