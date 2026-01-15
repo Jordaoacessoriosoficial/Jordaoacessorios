@@ -70,21 +70,7 @@
 </style>
 </head>
 <script>
-function calcularTotal() {
-  const produto = document.getElementById("produto").value;
-  const quantidade = document.getElementById("quantidade").value;
 
-  if (!produto || !quantidade) {
-    document.getElementById("total").value = "";
-    return;
-  }
-
-  const partes = produto.split("|");
-  const preco = parseFloat(partes[1]);
-
-  const total = preco * quantidade;
-  document.getElementById("total").value = "R$ " + total.toFixed(2);
-}
 </script>
 <body>
 
@@ -129,7 +115,7 @@ function calcularTotal() {
 <input type="text" id="total" placeholder="R$ 0,00" readonly>
 
   <label>Forma de pagamento</label>
-<select id="pagamento">
+<select id="pagamento" onchange="mostrarPix()">
   <option value="">Selecione</option>
   <option value="PIX">PIX</option>
   <option value="Dinheiro">Dinheiro</option>
@@ -144,7 +130,7 @@ function calcularTotal() {
 
   <textarea id="obs" rows="3" placeholder="Observações"></textarea>
 
- <button type="button" onclick="alert('BOTÃO FUNCIONANDO')">
+ <button type="button" onclick="enviarPedido()">
   Enviar pedido
 </button>
 
@@ -158,15 +144,60 @@ function calcularTotal() {
 
 https://alex2007alicia-sketch.github.io/Jordaoacessorios/
 <script>
-document.getElementById("pagamento").addEventListener("change", function () {
-  const pixDiv = document.getElementById("pixInfo");
-  if (this.value === "PIX") {
-    pixDiv.style.display = "block";
-  } else {
-    pixDiv.style.display = "none";
+function mostrarPix() {
+  var pagamento = document.getElementById("pagamento").value;
+  var pixDiv = document.getElementById("pixInfo");
+  pixDiv.style.display = pagamento === "PIX" ? "block" : "none";
+}
+
+function calcularTotal() {
+  var produto = document.getElementById("produto").value;
+  var qtd = document.getElementById("quantidade").value;
+
+  if (!produto || !qtd) {
+    document.getElementById("total").value = "";
+    return;
   }
-});
+
+  var preco = produto.split("|")[1];
+  document.getElementById("total").value = "R$ " + (preco * qtd).toFixed(2);
+}
+
+function enviarPedido() {
+  var nome = document.getElementById("nome").value;
+  var telefone = document.getElementById("telefone").value;
+  var produtoValor = document.getElementById("produto").value;
+  var quantidade = document.getElementById("quantidade").value;
+  var pagamento = document.getElementById("pagamento").value;
+  var total = document.getElementById("total").value;
+  var obs = document.getElementById("obs").value;
+
+  if (!nome || !telefone || !produtoValor || !quantidade || !pagamento) {
+    alert("Preencha todos os campos.");
+    return;
+  }
+
+  var produto = produtoValor.split("|")[0];
+  var chavePix = "81988052139";
+
+  var msg =
+"🛒 PEDIDO - JORDÃO ACESSÓRIOS\n\n" +
+"Nome: " + nome + "\n" +
+"Telefone: " + telefone + "\n" +
+"Produto: " + produto + "\n" +
+"Qtd: " + quantidade + "\n" +
+"Total: " + total + "\n" +
+"Pagamento: " + pagamento + "\n" +
+"PIX: " + chavePix + "\n\n" +
+"Obs: " + (obs || "Nenhuma");
+
+  window.open(
+    "https://wa.me/5581988052139?text=" + encodeURIComponent(msg),
+    "_blank"
+  );
+}
 </script>
+
 
 </body>
 </html>
