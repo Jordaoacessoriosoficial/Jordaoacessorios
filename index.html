@@ -191,7 +191,7 @@ function copiarPix() {
   <button type="button" onclick="fecharResumo()" style="margin-left:8px;">✏️ Editar</button>
 </div>
   
-function enviarPedido() {
+function mostrarResumo() {
   var nome = document.getElementById("nome").value;
   var telefone = document.getElementById("telefone").value;
   var produtoValor = document.getElementById("produto").value;
@@ -206,18 +206,28 @@ function enviarPedido() {
   }
 
   var produto = produtoValor.split("|")[0];
-  var chavePix = "81988052139";
 
-  var msg =
-"🛒 PEDIDO - JORDÃO ACESSÓRIOS\n\n" +
-"Nome: " + nome + "\n" +
-"Telefone: " + telefone + "\n" +
-"Produto: " + produto + "\n" +
-"Qtd: " + quantidade + "\n" +
-"Total: " + total + "\n" +
-"Pagamento: " + pagamento + "\n" +
-"PIX: " + chavePix + "\n\n" +
-"Obs: " + (obs || "Nenhuma");
+  var resumo =
+    "Nome: " + nome + "<br>" +
+    "Telefone: " + telefone + "<br>" +
+    "Produto: " + produto + "<br>" +
+    "Quantidade: " + quantidade + "<br>" +
+    "Total: " + total + "<br>" +
+    "Pagamento: " + pagamento + "<br>" +
+    (obs ? "Obs: " + obs : "");
+
+  document.getElementById("resumoTexto").innerHTML = resumo;
+  document.getElementById("resumoPedido").style.display = "block";
+}
+
+function fecharResumo() {
+  document.getElementById("resumoPedido").style.display = "none";
+}
+
+function confirmarEnvio() {
+  document.getElementById("resumoPedido").style.display = "none";
+  enviarPedido();
+}
 
   window.open(
     "https://wa.me/5581988052139?text=" + encodeURIComponent(msg),
