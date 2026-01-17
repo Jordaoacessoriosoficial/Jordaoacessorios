@@ -141,9 +141,7 @@
 
   <textarea id="obs" rows="3" placeholder="Observações"></textarea>
 
- <button type="button" onclick="enviarPedido()">
-  Enviar pedido
-</button>
+ <button type="button" onclick="mostrarResumo()">Enviar pedido</button>
 
 </div> 
 
@@ -185,6 +183,14 @@ function copiarPix() {
   });
 }
 
+<div id="resumoPedido" style="display:none; margin-top:15px; padding:12px; background:#f9f9f9; border:1px solid #ddd; border-radius:8px;">
+  <strong>🧾 Resumo do pedido</strong>
+  <p id="resumoTexto" style="margin-top:8px;"></p>
+
+  <button type="button" onclick="confirmarEnvio()">✅ Confirmar e enviar</button>
+  <button type="button" onclick="fecharResumo()" style="margin-left:8px;">✏️ Editar</button>
+</div>
+  
 function enviarPedido() {
   var nome = document.getElementById("nome").value;
   var telefone = document.getElementById("telefone").value;
