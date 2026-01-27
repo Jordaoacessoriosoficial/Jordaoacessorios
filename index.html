@@ -163,13 +163,13 @@
 .avaliacoes {
   background: #fff;
   color: #000;
-  margin: 20px;
+  margin: 20px auto;
   padding: 20px;
+  max-width: 420px;
   border-radius: 15px;
 }
 
 .avaliacoes h3 {
-  text-align: center;
   margin-bottom: 15px;
 }
 
@@ -318,7 +318,15 @@
 
 
 </div> 
+<div class="avaliacoes">
+  <h3>⭐ Avalie sua experiência</h3>
 
+  <input type="text" id="nomeAvaliacao" placeholder="Seu nome">
+
+  <textarea id="msgAvaliacao" rows="3" placeholder="Conte como foi sua experiência"></textarea>
+
+  <button type="button" onclick="enviarAvaliacao()">Enviar avaliação</button>
+</div>
 
 <footer>
   📞 81 98805-2139 <br>
@@ -440,6 +448,27 @@ function atualizarLista() {
 function removerItem(index) {
   itens.splice(index, 1);
   atualizarLista();
+}
+  function enviarAvaliacao() {
+  let nome = document.getElementById("nomeAvaliacao").value;
+  let msg = document.getElementById("msgAvaliacao").value;
+
+  if (!nome || !msg) {
+    alert("Preencha seu nome e a avaliação 😊");
+    return;
+  }
+
+  let texto =
+`⭐ NOVA AVALIAÇÃO ⭐
+
+👤 Cliente: ${nome}
+💬 Avaliação:
+${msg}`;
+
+  window.open(
+    "https://wa.me/5581988052139?text=" + encodeURIComponent(texto),
+    "_blank"
+  );
 }
 </script>
 
